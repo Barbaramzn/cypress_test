@@ -13,6 +13,14 @@ export class LoginPage {
             cy.get('.fa').click()
         }
 
+        clearUserinformation() {
+            cy.get('#username').clear()
+        }
+
+        clearPassinformation(){
+            cy.get('#password').clear()
+        }
+
 
 
 }

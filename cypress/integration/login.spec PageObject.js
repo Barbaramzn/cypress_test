@@ -27,34 +27,36 @@ describe('test de login', () => {
 
 
    it('An invalid password cannot login', () =>{
-  
-    cy.get('#username').type("tomsmith")
-    cy.get('#password').type("error!")
-    cy.get('.fa').click()
-    cy.get('#flash').contains("Your password is invalid!")
+    loginPage.fillUser('tomsmith')
+    loginPage.fillPass('error!')
+    loginPage.clickButtonLogin()
+    welcomePage.checkMessage('Your password is invalid!')
+
+    
    })
 
    it('An invalid username cannot login', () =>{
-   
-    cy.get('#username').type('error!')
-    cy.get('#password').type('SuperSecretPassword!')
-    cy.get('.fa').click()
-    cy.get('#flash').contains('Your username is invalid!')
+    loginPage.fillUser('error!')
+    loginPage.fillPass('SuperSecretPassword!')
+    loginPage.clickButtonLogin()
+    welcomePage.checkMessage('Your username is invalid!')
+
+    
    })
 
    it('Blank information cannot login', () =>{
-
-    cy.get('.fa').click()
-    cy.get('#flash').contains('Your username is invalid!')
-                
+    loginPage.clickButtonLogin()
+    welcomePage.checkMessage('Your username is invalid!')
+    
+                    
    })
 
    it ('A empty user and password cannot login', () =>{
-
-    cy.get('#username').clear()
-    cy.get('#password').clear()
-    cy.get('.fa').click()
-    cy.get('#flash').contains("Your username is invalid!")
+    loginPage.clearUserinformation()
+    loginPage.clearPassinformation()
+    loginPage.clickButtonLogin()
+    welcomePage.checkMessage('Your username is invalid!')
+    
             
     })             
 
